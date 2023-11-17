@@ -75,6 +75,7 @@ mongoose
   .then(() => {
     app.listen(PORT, () => console.log(`Server is running at PORT ${PORT}`));
 
+    /*RUN 1 TIME ONLY THEN COMMENT IT OUT*/
     User.insertMany(users);
     Post.insertMany(posts);
   })
