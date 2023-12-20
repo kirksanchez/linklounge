@@ -23,7 +23,7 @@ import { users, posts } from './data/index.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const corsOptions = {
-  origin: 'https://linklounge.onrender.com', // Replace with your client's domain
+  origin: 'https://linklounge.netlify.app/', // Replace with your client's domain
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   allowedHeaders: 'Content-Type,Authorization',
   credentials: true,
