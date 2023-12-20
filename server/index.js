@@ -22,6 +22,14 @@ import { users, posts } from './data/index.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const corsOptions = {
+  origin: 'https://yourclientdomain.com', // Replace with your client's domain
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  allowedHeaders: 'Content-Type,Authorization',
+  credentials: true,
+  optionsSuccessStatus: 204,
+  maxAge: 86400, // 24 hours
+};
 dotenv.config();
 const app = express();
 app.use(express.json());
@@ -30,7 +38,7 @@ app.use(helmet.crossOriginResourcePolicy({ policy: 'cross-origin' }));
 app.use(morgan('common'));
 app.use(bodyParser.json({ limit: '30mb', extended: true }));
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }));
-app.use(cors());
+app.use(cors(corsOptions));
 app.use('/assets', express.static(path.join(__dirname, 'public/assets')));
 
 //FILE STORAGE

@@ -26,7 +26,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
   const patchFriend = async () => {
     try {
       const response = await fetch(
-        `https://linklounge.onrender.com/users/${_id}/${friendId}`,
+        `http://localhost:3001/users/${_id}/${friendId}`,
         {
           method: 'PATCH',
           headers: {
