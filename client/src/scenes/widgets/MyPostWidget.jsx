@@ -33,11 +33,14 @@ const MyPostWidget = ({ picturePath }) => {
     }
 
     try {
-      const response = await fetch('https://linklounge.onrender.com/posts', {
-        method: 'POST',
-        headers: { Authorization: `Bearer ${token}` },
-        body: formData,
-      });
+      const response = await fetch(
+        'https://linklounge-ajbt.vercel.app//posts',
+        {
+          method: 'POST',
+          headers: { Authorization: `Bearer ${token}` },
+          body: formData,
+        }
+      );
 
       if (!response.ok) {
         throw new Error('Network response was not ok');

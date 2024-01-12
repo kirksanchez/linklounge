@@ -16,7 +16,7 @@ const ProfilePage = () => {
 
   const getUser = async () => {
     const response = await fetch(
-      `https://linklounge.onrender.com/users/${userId}`,
+      `https://linklounge-ajbt.vercel.app//users/${userId}`,
       {
         method: 'GET',
         headers: { Authorization: `Bearer ${token}` },

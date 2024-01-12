@@ -8,7 +8,7 @@ const UserImage = ({ image, size = '60px' }) => {
         width={size}
         height={size}
         alt='user'
-        src={`https://linklounge.onrender.com/assets/${image}`}
+        src={`https://linklounge-ajbt.vercel.app//assets/${image}`}
       />
     </Box>
   );
