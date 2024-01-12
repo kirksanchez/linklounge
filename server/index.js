@@ -118,8 +118,9 @@ const app = express();
 app.use(
   cors({
     origin: 'https://linklounge.vercel.app',
-    methods: ['POST', 'PATCH', 'GET', 'DELETE', 'PUT'],
+    methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'],
     credentials: true,
+    allowedHeaders: 'Content-Type,Authorization',
   })
 );
 app.use(express.json());
