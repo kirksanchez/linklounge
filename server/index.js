@@ -90,9 +90,9 @@
 //   .catch((error) => console.log('Error connecting to MongoDB:', error));
 
 import express from 'express';
+import cors from 'cors';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
-import cors from 'cors';
 import dotenv from 'dotenv';
 import multer from 'multer';
 import helmet from 'helmet';
@@ -111,24 +111,46 @@ import { users, posts } from './data/index.js';
 
 // CONFIGURATIONS
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-dotenv.config();
 const app = express();
+// app.use(
+//   cors({
+//     origin: ['https://linklounge.vercel.app', 'http://localhost:5174'],
+//     methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'],
+//     credentials: true,
+//     allowedHeaders: 'Content-Type,Authorization',
+//   })
+// );
 app.use(
   cors({
-    origin: 'https://linklounge.vercel.app',
-    methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'],
+    origin: (origin, callback) => {
+      const allowedOrigins = [
+        'https://linklounge.vercel.app',
+        'http://localhost:5174',
+      ];
+      // allow requests with no origin (like mobile apps or curl requests)
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.indexOf(origin) === -1) {
+        var msg =
+          'The CORS policy for this site does not ' +
+          'allow access from the specified Origin.';
+        return callback(new Error(msg), false);
+      }
+      return callback(null, true);
+    },
     credentials: true,
     allowedHeaders: 'Content-Type,Authorization',
+    methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'],
   })
 );
 app.use(express.json());
+app.use(bodyParser.json({ limit: '30mb', extended: true }));
+app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }));
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: 'cross-origin' }));
 app.use(morgan('common'));
-app.use(bodyParser.json({ limit: '30mb', extended: true }));
-app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+dotenv.config();
 
 app.use('/assets', express.static(path.join(__dirname, 'public/assets')));
 
