@@ -123,7 +123,7 @@ app.use(bodyParser.json({ limit: '30mb', extended: true }));
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }));
 app.use(
   cors({
-    origin: ['https://linklounge.vercel.app/'],
+    origin: 'https://linklounge.vercel.app',
     methods: ['POST', 'PATCH', 'GET', 'DELETE', 'PUT'],
     credentials: true,
   })
