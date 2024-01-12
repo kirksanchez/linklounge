@@ -13,7 +13,7 @@ const FriendListWidget = ({ userId }) => {
 
   const getFriends = async () => {
     const response = await fetch(
-      `https://linklounge-ajbt.vercel.app//users/${userId}/friends`,
+      `https://linklounge-ajbt.vercel.app/users/${userId}/friends`,
       {
         method: 'GET',
         headers: { Authorization: `Bearer ${token}` },

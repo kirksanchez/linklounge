@@ -23,7 +23,7 @@ const UserWidget = ({ userId, picturePath }) => {
 
   const getUser = async () => {
     const response = await fetch(
-      `https://linklounge-ajbt.vercel.app//users/${userId}`,
+      `https://linklounge-ajbt.vercel.app/users/${userId}`,
       {
         method: 'GET',
         headers: { Authorization: `Bearer ${token}` },
